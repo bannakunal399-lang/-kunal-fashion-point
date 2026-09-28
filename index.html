@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUNIX — Fashion & Sneakers</title>
+<meta name="description" content="KUNIX - Trendy clothes, best quality, affordable prices.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="topbar">
+      <img src="assets/kunix_logo.png" alt="KUNIX Logo" style="height:56px;width:auto;object-fit:contain;margin-right:12px;">
+    <a class="brand" href="#">
+      <span class="kf">KX</span>
+      <span><strong>KUNIX</strong><small>FASHION POINT</small></span>
+    </a>
+    <div class="search"><input id="searchInput" placeholder="Search for t-shirts, jeans, shirts..."><button onclick="searchProducts()">⌕</button></div>
+    <div class="head-actions">
+      <button onclick="alert('Login page coming soon')">♙ Login / Signup</button>
+      <button>♡ Wishlist (<span id="wishCount">0</span>)</button>
+      <button onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+    </div>
+  </div>
+  <nav>
+    <a class="active" href="#">Home</a><a href="#products">Men</a><a href="#products">Women</a><a href="#products">Unisex</a>
+    <a class="sale" href="#sale">Sale</a><a href="#products">New Arrivals</a><a href="#about">About Us</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p>KUNIX</p>
+    <h1>Your Style<br>Our Priority</h1>
+    <span>Trendy Clothes &nbsp; | &nbsp; Best Quality &nbsp; | &nbsp; Affordable Prices</span>
+    <a href="#products" class="btn">Shop Now →</a>
+  </div>
+  <div class="hero-models">
+    <div class="model m1">MEN'S<br><b>NEW LOOK</b></div>
+    <div class="model m2">WOMEN'S<br><b>NEW LOOK</b></div>
+    <div class="hero-badge">Fashion<br>for Every<br>Mood</div>
+  </div>
+</section>
+
+<section class="categories">
+  <h2>Shop by Category</h2>
+  <div class="cat-grid">
+    <button onclick="filterCategory('Men')">👕<b>Men</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Women')">👚<b>Women</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Unisex')">🧥<b>Unisex</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Jeans')">👖<b>Jeans</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Shirts')">👔<b>Shirts</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Hoodies')">🧥<b>Hoodies</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Footwear')">👟<b>Footwear</b><small>Shop Now →</small></button>
+    <button onclick="filterCategory('Accessories')">🧢<b>Accessories</b><small>Shop Now →</small></button>
+  </div>
+</section>
+
+<section class="products-section" id="products">
+  <div class="section-head"><div><h2>Best Sellers</h2><p>Top picks from our customers</p></div><button onclick="renderProducts(products)">View All →</button></div>
+  <div id="productGrid" class="product-grid"></div>
+</section>
+
+<section id="sale" class="sale-banner">
+  <div><small>UP TO</small><strong>50% OFF</strong><p>Biggest Sale of the Season!</p></div>
+  <a href="#products" class="btn">Shop Sale →</a>
+  <div class="sale-word">SALE</div>
+</section>
+
+<section class="benefits">
+  <div>🚚 <b>Free Shipping</b><small>On orders above ₹999</small></div>
+  <div>🛡️ <b>Secure Payment</b><small>100% safe & secure</small></div>
+  <div>📦 <b>Easy Returns</b><small>Within 7 days</small></div>
+  <div>🎧 <b>24/7 Support</b><small>We're here to help</small></div>
+  <div>💬 <b>WhatsApp Support</b><small>Chat with us anytime</small></div>
+</section>
+
+<section id="about" class="about">
+  <h2>About KUNIX</h2>
+  <p>Trendy fashion, comfortable styles and affordable prices — all in one place.</p>
+</section>
+
+<footer id="contact">
+  <div class="footer-brand"><span class="kf">KX</span><h3>KUNIX<br><small>FASHION POINT</small></h3></div>
+  <div><h4>Quick Links</h4><a href="#">Home</a><a href="#products">Men</a><a href="#products">Women</a><a href="#sale">Sale</a></div>
+  <div><h4>Customer Support</h4><a>FAQs</a><a>Shipping Policy</a><a>Return Policy</a><a>Terms & Conditions</a></div>
+  <div><h4>Follow Us</h4><p>Instagram &nbsp; Facebook &nbsp; YouTube</p><button class="whatsapp" onclick="openWhatsApp()">💬 Chat on WhatsApp</button></div>
+  <div class="copyright">© 2026 KUNIX. All Rights Reserved.</div>
+</footer>
+
+
+<div id="checkoutModal" class="checkout-modal">
+  <div class="checkout-box">
+    <button class="checkout-close" onclick="closeCheckout()">✕</button>
+    <h2>Place Your Order</h2>
+    <p class="checkout-note">Delivery details भरें और payment method चुनें।</p>
+    <form id="checkoutForm" onsubmit="placeOrder(event)">
+      <input id="custName" required placeholder="पूरा नाम">
+      <input id="custPhone" required pattern="[0-9]{10}" placeholder="Mobile Number (10 digits)">
+      <textarea id="custAddress" required placeholder="पूरा Delivery Address"></textarea>
+      <input id="custPincode" required pattern="[0-9]{6}" placeholder="Pincode">
+      <select id="paymentMethod" required>
+        <option value="">Payment Method चुनें</option>
+        <option value="upi">UPI Payment</option>
+        <option value="cod">Cash on Delivery</option>
+      </select>
+      <div id="upiBox" class="upi-box">
+        <b>UPI ID:</b> YOUR-UPI-ID@upi
+        <small>अपना असली UPI ID डालने के बाद इसे replace करें।</small>
+      </div>
+      <div class="order-summary"><span>Order Total</span><strong id="checkoutTotal">₹0</strong></div>
+      <button class="checkout" type="submit">Confirm Order</button>
+    </form>
+    <div id="orderSuccess" class="order-success"></div>
+  </div>
+</div>
+
+<div id="cartPanel" class="cart-panel">
+  <div class="cart-head"><h2>Your Cart</h2><button onclick="closeCart()">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
+  <button class="checkout" onclick="checkout()">Proceed to Checkout</button>
+</div>
+<div id="overlay" class="overlay" onclick="closeCart()"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
